@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="db768515-4ce1-46d9-a307-a85f18cdf6c8">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="337"/>
+	<parameter name="inicio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select p.*,count(especialidad),e.nomesp from citas c,personas p,especialidad e  where c.medico=p.dni and e.codesp=c.especialidad and (c.fecha::text>=$P{inicio} and c.fecha::text<=$P{fin}) group by e.nomesp,p.dni order by count desc limit 10]]>
+	</queryString>
+	<field name="dni" class="java.lang.String"/>
+	<field name="tdocumento" class="java.lang.Boolean"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="apellidos" class="java.lang.String"/>
+	<field name="correo" class="java.lang.String"/>
+	<field name="telefono" class="java.lang.String"/>
+	<field name="celular" class="java.lang.String"/>
+	<field name="direccion" class="java.lang.String"/>
+	<field name="fnacimiento" class="java.sql.Date"/>
+	<field name="sexo" class="java.lang.Boolean"/>
+	<field name="clave" class="java.lang.String"/>
+	<field name="estpersona" class="java.lang.Boolean"/>
+	<field name="tpersona" class="java.lang.String"/>
+	<field name="estactivo" class="java.lang.Boolean"/>
+	<field name="hora" class="java.sql.Time"/>
+	<field name="fotpersona" class="java.lang.String"/>
+	<field name="count" class="java.lang.Long"/>
+	<field name="nomesp" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="150" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="94" width="555" height="21" uuid="75088772-46cc-438f-b469-209f6e56173c"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[     TELEFONO: 2550414           CELULAR: Claro: 0968729144]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="10" width="555" height="50" forecolor="#33CC00" uuid="e57711b8-4e70-4060-bccc-c3ea3d3f27db"/>
+				<textElement>
+					<font size="36"/>
+				</textElement>
+				<text><![CDATA[            Odontologia Dental]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="73" width="555" height="21" uuid="9fa8f6a1-880b-477e-a394-f4b0e3a46c6e"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[                    DIRECCION: VÍA GUAYLLABAMBA TABACUNDO, TABACUNDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="115" width="555" height="21" uuid="48f63dcc-dd31-461c-91a2-1bfa34c6c4e2"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[                                      CORREO: odontologiadental0@gmail.com]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement mode="Transparent" x="55" y="67" width="473" height="76" uuid="321d0f25-118a-49e1-9f1e-ce79f84dfbeb"/>
+			</rectangle>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="63" splitType="Stretch">
+			<staticText>
+				<reportElement x="49" y="5" width="479" height="50" uuid="97e97bfb-8dec-4760-89ad-c1bec92a8f04"/>
+				<textElement verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Medicos con mas Consultas Medicas por Especialidad]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="7" y="9" width="100" height="20" uuid="6d3915fc-488f-4933-ba3a-e91b54599dbf"/>
+				<text><![CDATA[DNI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="116" y="9" width="100" height="20" uuid="cb8f7ad4-9a4c-4c08-b87f-cfb2dc97ce61"/>
+				<text><![CDATA[NOMBRES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="225" y="9" width="100" height="20" uuid="086d3908-e590-4426-8960-f52b751ba3d5"/>
+				<text><![CDATA[APELLIDOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="9" width="100" height="20" uuid="ffc0299c-021d-4de5-b211-37dbad86acf2"/>
+				<text><![CDATA[CONSULTORIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="446" y="9" width="100" height="20" uuid="e2cc498e-c705-4384-9040-150e9a66ce3f"/>
+				<text><![CDATA[Cant. Citas]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement mode="Transparent" x="6" y="8" width="540" height="20" uuid="cc63e9e5-6b21-42fc-93d9-c563f0da8e53"/>
+			</rectangle>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement x="7" y="3" width="100" height="20" uuid="a5ed799a-20a1-4f29-8039-e5146f4f94c2"/>
+				<textFieldExpression><![CDATA[$F{dni}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="116" y="3" width="100" height="20" uuid="2c1d4742-ad30-4db3-9e7b-19cc632ce62c"/>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="225" y="3" width="100" height="20" uuid="0dc9a19f-b09d-48b5-8437-0fb5748acf50"/>
+				<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="335" y="3" width="100" height="20" uuid="4c35b7ca-7323-463f-a522-26e28af60f4e"/>
+				<textFieldExpression><![CDATA[$F{nomesp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="446" y="3" width="100" height="20" uuid="f7b6ea0d-deec-4956-be63-81478d4d0beb"/>
+				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement mode="Transparent" x="6" y="4" width="540" height="20" uuid="3c45bb87-7e7e-42f1-915f-fbeae85bd2fd"/>
+			</rectangle>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="213" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement x="6" y="6" width="540" height="201" uuid="d2b15b35-830d-4fdb-8018-367aaca0cb87"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{nomesp}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{dni}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{count}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="26" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="24" splitType="Stretch"/>
+	</summary>
+</jasperReport>

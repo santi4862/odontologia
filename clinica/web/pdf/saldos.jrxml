@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="db768515-4ce1-46d9-a307-a85f18cdf6c8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="60"/>
+	<parameter name="inicio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select c.*,(select sum(costo) from citas c  where  (c.fecha::text>=$P{inicio} and c.fecha::text<=$P{fin}) ),e.nomesp from citas c ,especialidad e where e.codesp=c.especialidad and (c.fecha::text>=$P{inicio} and c.fecha::text<=$P{fin})]]>
+	</queryString>
+	<field name="idcita" class="java.lang.Integer"/>
+	<field name="asunto" class="java.lang.String"/>
+	<field name="paciente" class="java.lang.String"/>
+	<field name="medico" class="java.lang.String"/>
+	<field name="fecha" class="java.sql.Date"/>
+	<field name="notas" class="java.lang.String"/>
+	<field name="enfermedad" class="java.lang.String"/>
+	<field name="sintomas" class="java.lang.String"/>
+	<field name="medicamentos" class="java.lang.String"/>
+	<field name="estcita" class="java.lang.String"/>
+	<field name="estpago" class="java.lang.String"/>
+	<field name="costo" class="java.lang.Double"/>
+	<field name="tipopago" class="java.lang.String"/>
+	<field name="foto" class="java.lang.String"/>
+	<field name="especialidad" class="java.lang.String"/>
+	<field name="servicio" class="java.lang.String"/>
+	<field name="hora" class="java.lang.String"/>
+	<field name="cantidad" class="java.lang.String"/>
+	<field name="sum" class="java.lang.Double"/>
+	<field name="nomesp" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="151" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="93" width="555" height="21" uuid="d3fdd5ff-03c1-4530-94f4-1734af14c7ec"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[     TELEFONO: 2550414           CELULAR: Claro: 0968729144]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="9" width="555" height="50" forecolor="#33CC00" uuid="77951d6c-d7e9-451c-b77f-84e4aa89b865"/>
+				<textElement>
+					<font size="36"/>
+				</textElement>
+				<text><![CDATA[            Odontologia Dental]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="72" width="555" height="21" uuid="99b1ad50-f741-4684-b8aa-257ce668602e"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[                    DIRECCION: VÍA GUAYLLABAMBA TABACUNDO, TABACUNDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="114" width="555" height="21" uuid="034ce822-c479-4333-bd46-dbdd35404798"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[                                      CORREO: odontologiadental0@gmail.com]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement mode="Transparent" x="46" y="66" width="473" height="76" uuid="2ab9f2c3-41bc-4615-b112-e861f671dafd"/>
+			</rectangle>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="64" splitType="Stretch">
+			<staticText>
+				<reportElement x="49" y="7" width="453" height="50" uuid="97e97bfb-8dec-4760-89ad-c1bec92a8f04"/>
+				<textElement verticalAlignment="Middle">
+					<font size="25" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saldos Obtenidos por Reservaciones Medicas]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="24" y="11" width="79" height="20" uuid="6d3915fc-488f-4933-ba3a-e91b54599dbf"/>
+				<text><![CDATA[Codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="112" y="11" width="100" height="20" uuid="cb8f7ad4-9a4c-4c08-b87f-cfb2dc97ce61"/>
+				<text><![CDATA[Asunto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="221" y="11" width="100" height="20" uuid="086d3908-e590-4426-8960-f52b751ba3d5"/>
+				<text><![CDATA[Especilidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="331" y="11" width="100" height="20" uuid="ffc0299c-021d-4de5-b211-37dbad86acf2"/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="442" y="11" width="100" height="20" uuid="e2cc498e-c705-4384-9040-150e9a66ce3f"/>
+				<text><![CDATA[Costo]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement mode="Transparent" x="16" y="11" width="526" height="20" uuid="2be2dcc3-4642-40b1-947d-fe02a636dc9b"/>
+			</rectangle>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="24" y="3" width="79" height="20" uuid="a5ed799a-20a1-4f29-8039-e5146f4f94c2"/>
+				<textFieldExpression><![CDATA[$F{idcita}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="113" y="3" width="100" height="20" uuid="2c1d4742-ad30-4db3-9e7b-19cc632ce62c"/>
+				<textFieldExpression><![CDATA[$F{asunto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="3" width="100" height="20" uuid="0dc9a19f-b09d-48b5-8437-0fb5748acf50"/>
+				<textFieldExpression><![CDATA[$F{nomesp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="333" y="3" width="100" height="20" uuid="4c35b7ca-7323-463f-a522-26e28af60f4e"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="443" y="3" width="100" height="20" uuid="f7b6ea0d-deec-4956-be63-81478d4d0beb"/>
+				<textFieldExpression><![CDATA[$F{costo}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement mode="Transparent" x="16" y="2" width="526" height="20" uuid="49aa6164-8ebb-4902-92f8-a9ff9c4ca964"/>
+			</rectangle>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="67" splitType="Stretch">
+			<staticText>
+				<reportElement x="333" y="2" width="100" height="20" uuid="562313c7-787b-488d-89fa-345b829c6c73"/>
+				<text><![CDATA[Saldo total:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="443" y="2" width="100" height="20" uuid="3ab5911e-165f-4653-b82e-d0e98113fc20"/>
+				<textFieldExpression><![CDATA[$F{sum}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="128" y="47" width="100" height="20" uuid="f58fa731-8898-4b38-b345-1d395b8e8814"/>
+				<text><![CDATA[Fecha Generada]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="235" y="47" width="100" height="20" uuid="87fb0b00-b979-4c56-8abd-e6ca3581ff12"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement mode="Transparent" x="331" y="2" width="212" height="20" uuid="94f0dbfb-29c2-45bd-8c9d-add4118d067a"/>
+			</rectangle>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="26" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="24" splitType="Stretch"/>
+	</summary>
+</jasperReport>

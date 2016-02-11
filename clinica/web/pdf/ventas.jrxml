@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9269388a-3e69-4366-9a1b-283675833ec7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="91"/>
+	<parameter name="inicio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select sum(costo), fecha from citas where fecha::text>=$P{inicio} and fecha ::text<=$P{fin} group by fecha]]>
+	</queryString>
+	<field name="sum" class="java.lang.Double"/>
+	<field name="fecha" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="154" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="94" width="555" height="21" uuid="2a19e25b-9ac4-48d0-883c-64f7ba42e564"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[     TELEFONO: 2550414           CELULAR: Claro: 0968729144]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="10" width="555" height="50" forecolor="#33CC00" uuid="6ccb9264-06a8-44c4-ae6b-aa029f30c425"/>
+				<textElement>
+					<font size="36"/>
+				</textElement>
+				<text><![CDATA[            Odontologia Dental]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="73" width="555" height="21" uuid="27f21ba6-b0c5-4979-9e78-49ae06377b2f"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[                    DIRECCION: VÍA GUAYLLABAMBA TABACUNDO, TABACUNDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="115" width="555" height="21" uuid="e224abd9-b13e-4864-86c5-ebfe4695c2f6"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[                                      CORREO: odontologiadental0@gmail.com]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement mode="Transparent" x="47" y="67" width="473" height="76" uuid="58006092-b1aa-4413-9766-83e24f37696b"/>
+			</rectangle>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement x="30" y="15" width="508" height="46" uuid="034482a0-1717-42c1-8b16-9d1052f72e81"/>
+				<textElement verticalAlignment="Middle">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ventas Diarias por Prestacion de Servicios]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement x="117" y="9" width="100" height="20" uuid="6f4f0b64-edb5-4696-850d-af4fd7291393"/>
+				<text><![CDATA[Fecha Diaria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="327" y="9" width="163" height="20" uuid="44c7ecf9-a216-48ce-b738-080fe846c08e"/>
+				<text><![CDATA[Cantidad Acomulada diariamente]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement mode="Transparent" x="87" y="9" width="415" height="20" uuid="98337d86-467b-463b-9b40-6fbd30e08a23"/>
+			</rectangle>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="117" y="0" width="100" height="20" uuid="b495e445-ab31-45ad-b78d-c301a353a48b"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="359" y="0" width="100" height="20" uuid="172a40a9-2d81-4a1c-aabe-8b6e273bf2cf"/>
+				<textFieldExpression><![CDATA[$F{sum}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement mode="Transparent" x="87" y="2" width="415" height="20" uuid="e24f2478-f1e3-4c14-b8cf-448d2193d468"/>
+			</rectangle>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="307" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement x="12" y="11" width="530" height="287" uuid="2235e590-74d7-48cd-960e-7ede3ba0c098"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{fecha}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{fecha}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{sum}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

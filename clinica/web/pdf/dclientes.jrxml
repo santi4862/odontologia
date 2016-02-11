@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7fcdc532-d1df-45d2-aac6-dbc78c99c7be">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="inicio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select sum(costo),count(especialidad),e.nomesp,fecha from citas,especialidad e where fecha::text>=$P{inicio} and fecha::text <=$P{fin} and citas.especialidad=e.codesp
+ group by e.nomesp,fecha order by fecha desc]]>
+	</queryString>
+	<field name="sum" class="java.lang.Double"/>
+	<field name="count" class="java.lang.Long"/>
+	<field name="nomesp" class="java.lang.String"/>
+	<field name="fecha" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="158" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="94" width="555" height="21" uuid="26fae1aa-7fe8-4cee-aad1-374aaa2091d4"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[     TELEFONO: 2550414           CELULAR: Claro: 0968729144]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="10" width="555" height="50" forecolor="#33CC00" uuid="33a48b9c-220d-4978-9112-5167efb1be72"/>
+				<textElement>
+					<font size="36"/>
+				</textElement>
+				<text><![CDATA[            Odontologia Dental]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="73" width="555" height="21" uuid="2252fc78-5d81-471b-97be-4dd536048be7"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[                    DIRECCION: VÍA GUAYLLABAMBA TABACUNDO, TABACUNDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="115" width="555" height="21" uuid="ce943869-397f-46d9-948a-524305f4a3ab"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[                                      CORREO: odontologiadental0@gmail.com]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement mode="Transparent" x="47" y="67" width="473" height="76" uuid="19339897-1bc6-4948-8182-ef13615d9137"/>
+			</rectangle>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement x="25" y="11" width="507" height="23" uuid="b451e818-1813-4a47-b3ca-75e92217cfd5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rentabilidad de Venta de Servicios por Especialidades]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="43" splitType="Stretch">
+			<staticText>
+				<reportElement x="63" y="13" width="100" height="20" uuid="f531c0a8-e0b9-4856-bef5-b9cbd59460b0"/>
+				<text><![CDATA[Cantidad de Citas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="13" width="99" height="20" uuid="5fa696ef-6052-468e-8ee9-ba0ca17d9217"/>
+				<text><![CDATA[Especialidad ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="13" width="100" height="20" uuid="6e47f2a0-9e4b-417f-8317-5a0f70cb1419"/>
+				<text><![CDATA[Total de recaudado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="168" y="13" width="100" height="20" uuid="f4d6ed30-80c8-4c37-a5fc-3bc2634ce7cc"/>
+				<text><![CDATA[Fecha Acomulada]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement mode="Transparent" x="61" y="9" width="434" height="27" uuid="58b56231-9473-4b1a-9dc4-b41b73f1cd96"/>
+			</rectangle>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="64" y="6" width="100" height="20" uuid="1f17d4a4-d72d-4921-9924-46d6075e3803"/>
+				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="275" y="6" width="100" height="20" uuid="e3a71d72-2779-4088-ada7-25262358fdae"/>
+				<textFieldExpression><![CDATA[$F{nomesp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="395" y="6" width="100" height="20" uuid="64fce712-9751-4cd6-a7f8-e3bb30206422"/>
+				<textFieldExpression><![CDATA[$F{sum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="168" y="6" width="100" height="20" uuid="db23049f-4e2e-4630-aa5a-17f79822e66b"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement mode="Transparent" x="62" y="4" width="432" height="23" uuid="20b55b95-3bf1-4220-91ca-9487e8ead703"/>
+			</rectangle>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="277" splitType="Stretch">
+			<lineChart>
+				<chart>
+					<reportElement x="18" y="10" width="520" height="260" uuid="02627f04-755d-40bc-b2cf-62c813526b65"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{nomesp}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{fecha}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{count}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<linePlot>
+					<plot/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</linePlot>
+			</lineChart>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="30" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7fcdc532-d1df-45d2-aac6-dbc78c99c7be">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="384"/>
+	<parameter name="inicio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select count(estpago),estpago,(select count(estpago) from citas)as total from citas where fecha::text>=$P{inicio} and fecha::text <=$P{fin} 
+ group by estpago]]>
+	</queryString>
+	<field name="count" class="java.lang.Long"/>
+	<field name="estpago" class="java.lang.String"/>
+	<field name="total" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="154" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="94" width="555" height="21" uuid="6a2547bd-db1c-443b-8b0a-6d8053e7a218"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[     TELEFONO: 2550414           CELULAR: Claro: 0968729144]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="10" width="555" height="50" forecolor="#33CC00" uuid="4a6d0991-0fc1-4b95-8813-0991c98d3179"/>
+				<textElement>
+					<font size="36"/>
+				</textElement>
+				<text><![CDATA[            Odontologia Dental]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="73" width="555" height="21" uuid="bc477e13-b85c-482f-b84b-c1c5a601e54f"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[                    DIRECCION: VÍA GUAYLLABAMBA TABACUNDO, TABACUNDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="115" width="555" height="21" uuid="efd1287d-e7a1-4252-9e7c-8b45760a0ba3"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[                                      CORREO: odontologiadental0@gmail.com]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement mode="Transparent" x="45" y="67" width="473" height="76" uuid="e20f1eed-d5be-46c7-a086-463881e15d0f"/>
+			</rectangle>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="49" splitType="Stretch">
+			<staticText>
+				<reportElement x="38" y="6" width="493" height="39" uuid="082d4c8b-106b-47a1-8e63-65c6c06f5f03"/>
+				<textElement verticalAlignment="Middle">
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[Estado de Pagos por Venta de Servicios Medicos]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="7" width="100" height="20" uuid="f531c0a8-e0b9-4856-bef5-b9cbd59460b0"/>
+				<text><![CDATA[Situacion de Pagos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="299" y="7" width="165" height="20" uuid="6e47f2a0-9e4b-417f-8317-5a0f70cb1419"/>
+				<text><![CDATA[Cantida de situacion de pagos]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement mode="Transparent" x="59" y="7" width="434" height="20" uuid="58b56231-9473-4b1a-9dc4-b41b73f1cd96"/>
+			</rectangle>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="102" y="6" width="100" height="20" uuid="e3a71d72-2779-4088-ada7-25262358fdae"/>
+				<textFieldExpression><![CDATA[$F{estpago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="364" y="6" width="100" height="20" uuid="64fce712-9751-4cd6-a7f8-e3bb30206422"/>
+				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement mode="Transparent" x="59" y="3" width="435" height="23" uuid="20b55b95-3bf1-4220-91ca-9487e8ead703"/>
+			</rectangle>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="277" splitType="Stretch">
+			<pie3DChart>
+				<chart>
+					<reportElement x="14" y="10" width="527" height="259" uuid="c48e5efd-dfb9-4fea-9eb2-df01abb54a01"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[(($F{count}*100)/$F{total}).intValue()+" %   "+$F{estpago}]]></keyExpression>
+					<valueExpression><![CDATA[$F{count}]]></valueExpression>
+				</pieDataset>
+				<pie3DPlot>
+					<plot/>
+					<itemLabel/>
+				</pie3DPlot>
+			</pie3DChart>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

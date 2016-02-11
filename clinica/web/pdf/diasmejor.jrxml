@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="db768515-4ce1-46d9-a307-a85f18cdf6c8">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="252"/>
+	<parameter name="inicio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cantidad" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select count(fecha),c.fecha,e.nomesp from citas c,especialidad e  where c.especialidad=e.codesp and (c.fecha::text>=$P{inicio} and c.fecha::text<=$P{fin}) group by fecha,e.nomesp having count(fecha)>$P{cantidad} order by fecha asc]]>
+	</queryString>
+	<field name="count" class="java.lang.Long"/>
+	<field name="fecha" class="java.sql.Date"/>
+	<field name="nomesp" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="146" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="89" width="555" height="21" uuid="401d61e3-aa0a-4a9a-b412-63f187c36d7f"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[     TELEFONO: 2550414           CELULAR: Claro: 0968729144]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="5" width="555" height="50" forecolor="#33CC00" uuid="7651dcd7-93e2-453e-97a9-adc1eb8e021c"/>
+				<textElement>
+					<font size="36"/>
+				</textElement>
+				<text><![CDATA[            Odontologia Dental]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="68" width="555" height="21" uuid="902b9813-a387-4d45-81f8-b3b7fa270028"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[                    DIRECCION: VÍA GUAYLLABAMBA TABACUNDO, TABACUNDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="110" width="555" height="21" uuid="09bd0600-9751-4751-baff-bf9d6b26cd17"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[                                      CORREO: odontologiadental0@gmail.com]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement mode="Transparent" x="47" y="62" width="473" height="76" uuid="d0a7e444-dab7-4006-a0e4-260d9528a5f0"/>
+			</rectangle>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="64" splitType="Stretch">
+			<staticText>
+				<reportElement x="26" y="7" width="507" height="50" uuid="97e97bfb-8dec-4760-89ad-c1bec92a8f04"/>
+				<textElement verticalAlignment="Middle">
+					<font size="25" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fechas con mas Reservaciones Medicas]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="66" y="7" width="100" height="20" uuid="f1047078-2b8a-4aa9-aac1-797ed1ade2a0"/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="219" y="7" width="100" height="20" uuid="deb91391-9190-4197-99e9-4341d7265a68"/>
+				<text><![CDATA[Especialidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="356" y="7" width="100" height="20" uuid="b92571c1-f650-4a36-8ba7-c2a70436deff"/>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement mode="Transparent" x="25" y="6" width="508" height="20" uuid="d43b1720-f1b5-4a67-9254-7e8d2ce47872"/>
+			</rectangle>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="66" y="1" width="100" height="20" uuid="bca30aeb-8d1f-4758-b8d9-b892909d840a"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="219" y="1" width="100" height="20" uuid="8a4e4075-a778-4053-a9d2-35b7542c7ecc"/>
+				<textFieldExpression><![CDATA[$F{nomesp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="356" y="1" width="100" height="20" uuid="db070587-796d-4c60-9062-7543b1d30b14"/>
+				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement mode="Transparent" x="25" y="0" width="508" height="20" uuid="39fb9d03-c355-4685-b78c-cef7e4aba8da"/>
+			</rectangle>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="210" splitType="Stretch">
+			<barChart>
+				<chart>
+					<reportElement x="26" y="10" width="507" height="193" uuid="4302d137-6dec-4149-bdda-0503f8bc8c1f"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{nomesp}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{fecha}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{count}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="26" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="24" splitType="Stretch"/>
+	</summary>
+</jasperReport>

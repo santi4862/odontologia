@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="eb3a1208-f0f7-4a75-aeb2-e5b2e2b1b640">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="paciente" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="hora" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select *,(p.direccion)as dpersona,round((s.valservicio-(s.valservicio/((e.iva/100)+1)))::decimal,2)as ivas,round((s.valservicio+(s.valservicio-(s.valservicio/((e.iva/100)+1))))::decimal,2)as sumast from empresa e, personas p , citas c,servicios s where  p.dni=c.paciente and c.servicio=s.idservicio and c.paciente=$P{paciente} and c.fecha::text=$P{fecha} and c.hora=$P{hora}]]>
+	</queryString>
+	<field name="id" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="logo" class="java.lang.String"/>
+	<field name="correoi" class="java.lang.String"/>
+	<field name="telefonoi" class="java.lang.String"/>
+	<field name="direccion" class="java.lang.String"/>
+	<field name="celulari" class="java.lang.String"/>
+	<field name="horarioa" class="java.lang.String"/>
+	<field name="clavecor" class="java.lang.String"/>
+	<field name="iva" class="java.lang.Double"/>
+	<field name="dominio" class="java.lang.String"/>
+	<field name="dni" class="java.lang.String"/>
+	<field name="tdocumento" class="java.lang.Boolean"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="apellidos" class="java.lang.String"/>
+	<field name="correo" class="java.lang.String"/>
+	<field name="telefono" class="java.lang.String"/>
+	<field name="celular" class="java.lang.String"/>
+	<field name="fnacimiento" class="java.sql.Date"/>
+	<field name="sexo" class="java.lang.Boolean"/>
+	<field name="clave" class="java.lang.String"/>
+	<field name="estpersona" class="java.lang.Boolean"/>
+	<field name="tpersona" class="java.lang.String"/>
+	<field name="estactivo" class="java.lang.Boolean"/>
+	<field name="hora" class="java.sql.Time"/>
+	<field name="fotpersona" class="java.lang.String"/>
+	<field name="idcita" class="java.lang.Integer"/>
+	<field name="asunto" class="java.lang.String"/>
+	<field name="paciente" class="java.lang.String"/>
+	<field name="medico" class="java.lang.String"/>
+	<field name="fecha" class="java.sql.Date"/>
+	<field name="notas" class="java.lang.String"/>
+	<field name="enfermedad" class="java.lang.String"/>
+	<field name="sintomas" class="java.lang.String"/>
+	<field name="medicamentos" class="java.lang.String"/>
+	<field name="estcita" class="java.lang.String"/>
+	<field name="estpago" class="java.lang.String"/>
+	<field name="costo" class="java.lang.Double"/>
+	<field name="tipopago" class="java.lang.String"/>
+	<field name="foto" class="java.lang.String"/>
+	<field name="especialidad" class="java.lang.String"/>
+	<field name="servicio" class="java.lang.String"/>
+	<field name="idservicio" class="java.lang.String"/>
+	<field name="nomservicio" class="java.lang.String"/>
+	<field name="valservicio" class="java.lang.Double"/>
+	<field name="estservicio" class="java.lang.Boolean"/>
+	<field name="detalleser" class="java.lang.String"/>
+	<field name="fotoser" class="java.lang.String"/>
+	<field name="dpersona" class="java.lang.String"/>
+	<field name="ivas" class="java.math.BigDecimal"/>
+	<field name="sumast" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="85" splitType="Stretch">
+			<textField>
+				<reportElement x="34" y="13" width="311" height="36" forecolor="#00CC00" uuid="3d662340-1784-4aca-80f6-0201f8cec318"/>
+				<textElement>
+					<font size="26" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="363" y="15" width="157" height="20" uuid="6dc10252-2812-4594-906d-41738a4d44e5"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[FACTURA PROFORMA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="447" y="42" width="100" height="20" uuid="ef9a2989-453d-4cfd-8cc3-e06fca1593ab"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="348" y="42" width="100" height="20" uuid="960a4342-8750-4590-bcb6-4520a8fbae12"/>
+				<text><![CDATA[FECHA PROFORMA:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="188" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="34" y="12" width="210" height="161" uuid="2bd7ac1e-3e21-4f3f-a0a7-2fcfcca2c868"/>
+			</rectangle>
+			<textField>
+				<reportElement x="59" y="46" width="163" height="28" uuid="1c03b054-a429-4448-80bd-d14596568c86"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{logo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="59" y="75" width="163" height="20" uuid="d4641d30-f1c6-4efb-a9b7-ac6af41765a2"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{correoi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="59" y="95" width="163" height="20" uuid="b9a76e7f-b4c7-4fa9-98cc-92808fb778fe"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{telefonoi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="59" y="116" width="163" height="20" uuid="a19e657e-acf0-4319-9374-d2c1cf2d446d"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="59" y="136" width="163" height="20" uuid="5bf70fee-ef1c-4a31-994d-828e97b80504"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{celulari}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="292" y="12" width="228" height="161" uuid="401967e0-6913-4bbf-927c-541617186df8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="334" y="18" width="148" height="20" uuid="6459c390-5854-4644-850e-2232889e7d84"/>
+				<text><![CDATA[INFORMACION DEL CLIENTE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="403" y="46" width="109" height="20" uuid="8fe4444a-6258-4eaa-862a-846fea6f71da"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{dni}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="68" width="109" height="20" uuid="95b5eb1f-3985-4768-8907-7a242107d5a2"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="91" width="109" height="20" uuid="b71edb6b-9db6-467b-b747-32d12ef477bf"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="114" width="109" height="20" uuid="b4ca72a1-3bb4-4ba1-a389-029c534557a1"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{dpersona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="138" width="109" height="20" uuid="baaaf8b6-5b3d-4666-b8af-258b40c4c2e1"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{celular}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="302" y="46" width="101" height="20" uuid="c7a7b726-c063-4e3d-b1aa-43ef0824fcb3"/>
+				<text><![CDATA[N° IDENTIFICACION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="68" width="100" height="20" uuid="679b0c1f-ec8b-4c89-9c29-f3b98249b504"/>
+				<text><![CDATA[NOMBRES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="91" width="100" height="20" uuid="967284f6-5914-4cba-8125-1cd76a64275d"/>
+				<text><![CDATA[APELLIDOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="114" width="100" height="20" uuid="d929015a-e43a-40b5-a9f9-1ef6830683f5"/>
+				<text><![CDATA[DIRECCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="138" width="100" height="20" uuid="329ca0f2-b570-4117-a705-08068d7d973e"/>
+				<text><![CDATA[CELULAR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="59" y="18" width="163" height="20" uuid="a5fc1283-f5bb-4888-94d6-a598bf9a23a0"/>
+				<text><![CDATA[INFORMACION DE LA  CLINICA]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="258" splitType="Stretch">
+			<rectangle>
+				<reportElement x="34" y="6" width="486" height="28" uuid="a2320f10-b3a0-4e4a-a387-09e2f693eeb4"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="44" y="11" width="50" height="20" uuid="6eaa10c8-a4fa-4eeb-a9bc-ff851ffebf17"/>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="11" width="169" height="20" uuid="6ff10c37-06c0-4c89-9cb1-83449ef51c20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Concepto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="292" y="11" width="56" height="20" uuid="c6ea7127-11da-4143-870e-ca502382076e"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="363" y="11" width="64" height="20" uuid="df706915-686c-431a-b5b3-e4db55664fba"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Precio Unit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="447" y="11" width="55" height="20" uuid="371825b3-957c-46b6-a01a-c34c3fca3c03"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="34" y="37" width="486" height="27" uuid="274960c5-ff45-4092-b39b-a2bad26d7ce7"/>
+			</rectangle>
+			<textField>
+				<reportElement x="44" y="41" width="50" height="20" uuid="7b4ce78c-b2db-4c5d-b15c-98e1d5d82cd3"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{idcita}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="41" width="169" height="20" uuid="93cf8dff-1fea-48be-8c92-4756b05907ae"/>
+				<textFieldExpression><![CDATA[$F{nomservicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="292" y="41" width="56" height="20" uuid="b8c3d749-ceb0-485a-ab80-40928b2efabf"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[1]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="363" y="41" width="64" height="20" uuid="ada1f358-ac8e-4b8c-8887-734454df6a3d"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{valservicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="41" width="54" height="20" uuid="6fefcb99-2372-4f41-895c-47bdc0a8e22e"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{valservicio}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="34" y="73" width="486" height="119" uuid="a9a72a39-0d98-4c02-9b53-d83f28e1befa"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="279" y="103" width="223" height="80" uuid="fc4c7060-e3fc-43d7-9dfa-bddd3025a488"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="59" y="103" width="207" height="80" uuid="2d3ea1e3-c0a8-4e48-b294-313415ac058c"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="88" y="79" width="156" height="20" uuid="daf9a891-2c52-4e7c-a5dc-539a90864c53"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[El Pago Puede Realizarse en:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="79" width="179" height="20" uuid="6c50af61-c305-4ee7-8aa9-2064f452f20c"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Costo Estimado del Servicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="113" width="174" height="20" uuid="73393a0c-b7b3-4b4d-9c34-bbf1f85d5e59"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[A nombre de:Diego Chamorro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="137" width="174" height="20" uuid="3eb29148-358b-4d6f-bfd4-606a0fd6efb8"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Banco del Pichincha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="160" width="174" height="20" uuid="453ba2d9-1b3e-4020-9bf7-38e2b9a1c00f"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[N° de Cuenta: 2202214868]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="292" y="112" width="85" height="20" uuid="db7bf968-32d3-44f6-8ad7-569edc81b3f3"/>
+				<text><![CDATA[Tota Neto:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="292" y="136" width="85" height="20" uuid="77e24bb2-a4e9-4be7-b45e-54f0ee137ca9"/>
+				<text><![CDATA[Iva]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="292" y="160" width="85" height="20" uuid="083f4332-fabc-47e3-baa3-8e1d4d310eaf"/>
+				<text><![CDATA[Total Proforma]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="392" y="113" width="100" height="20" uuid="9a492b20-acbc-4ce6-9262-35b88776cbd5"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{valservicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="392" y="136" width="100" height="20" uuid="f6270548-b59a-41b7-ace0-39b44e5db464"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{ivas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="392" y="160" width="100" height="20" uuid="9516830e-e666-493a-87e1-9755f3cf7a33"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{sumast}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="34" y="204" width="486" height="39" uuid="bebf9f54-9933-4ee2-a33f-543a6aae62f6"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="44" y="204" width="468" height="39" uuid="0276e9cb-216e-4a27-940a-2dafa8338db0"/>
+				<text><![CDATA[En Caso de no estar conforme con esta proforma usted puede  contactarse con nuestra Institucion. Atención al cliente: 2550414 o 098845632147 Estaremos dispuestos a escuchar sus sugerencias y Reclamos.]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<columnFooter>
+		<band height="26" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="34" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="27" splitType="Stretch"/>
+	</summary>
+</jasperReport>
